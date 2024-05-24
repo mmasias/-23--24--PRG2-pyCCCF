@@ -130,4 +130,67 @@ public class CentroComercial {
             minutosSinCola++;
         }
     }
+
+    private void distribuirClientes() {
+        for (Caja caja : cajas) {
+            if (cola >= 1 && caja.getProductos() <= 0 && caja.isAbierta()) {
+                int art = (int) (Math.random() * 10) + 5;
+                caja.setProductos(art);
+                cola--;
+            }
+        }
+
+        if (cola >= 1 && cajaAuxiliar.getProductos() <= 0 && cajaAuxiliar.isAbierta()) {
+            int art = (int) (Math.random() * 10) + 5;
+            cajaAuxiliar.setProductos(art);
+            cola--;
+        }
+    }
+
+    private void mostrarEstado(int minuto) {
+        System.out.print("MINUTO " + minuto);
+        if (cola > 0) {
+            System.out.print(" - Llega " + cola + " cliente(s)");
+        } else {
+            System.out.print(" - No llega ningun cliente nuevo");
+        }
+        System.out.println(" - Hay " + cola + " clientes en la cola");
+        
+        for (int i = 0; i < cajas.length; i++) {
+            if (cajas[i].isAbierta()) {
+                System.out.print("Caja " + (i + 1) + ": " + cajas[i].getProductos() + " ");
+            } else {
+                System.out.print("Caja " + (i + 1) + ": Cerrada ");
+            }
+        }
+        
+        if (cajaAuxiliar.isAbierta()) {
+            System.out.println(" - Caja Auxiliar: " + cajaAuxiliar.getProductos());
+        } else {
+            System.out.println(" - Caja Auxiliar: Cerrada");
+        }
+        
+        System.out.println("-----------------------------------------------------------------------------");
+    }
+
+    private void mostrarResumen() {
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("Resumen cierre de tienda");
+        System.out.println("Clientes atendidos: " + clientesAtendidos);
+        System.out.println("Productos vendidos: " + productosVendidos);
+        System.out.println("Clientes sin atender en la cola: " + cola);
+        System.out.println("Minutos sin cola: " + minutosSinCola);
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("CIERRE DE TIENDA");
+        System.out.println("-----------------------------------------------------------------------------");
+    }
+
+    private boolean ningunaCajaAbierta() {
+        for (Caja caja : cajas) {
+            if (caja.isAbierta()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
