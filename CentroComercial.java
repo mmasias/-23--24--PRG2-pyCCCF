@@ -91,5 +91,43 @@ public class CentroComercial {
         System.out.println("-----------------------------------------------------------------------------");
     }
 
-    
+    private void procesarMinuto(int minuto) {
+        for (Caja caja : cajas) {
+            if (caja.isAbierta() && caja.getProductos() > 0) {
+                caja.procesarProducto();
+                productosVendidos++;
+                if (caja.getProductos() <= 0) {
+                    clientesAtendidos++;
+                }
+            }
+        }
+
+        if (cajaAuxiliar.getProductos() > 0) {
+            cajaAuxiliar.procesarProducto();
+            productosVendidos++;
+            if (cajaAuxiliar.getProductos() <= 0) {
+                clientesAtendidos++;
+            }
+        }
+
+        if (Math.random() <= porcentajeNuevo) {
+            cola++;
+        }
+
+        distribuirClientes();
+
+        if (cola > 15 && !cajaAuxiliar.isAbierta()) {
+            cajaAuxiliar.setAbierta(true);
+        }
+
+        if (cajaAuxiliar.isAbierta() && cajaAuxiliar.getProductos() <= 0 && cola < 15) {
+            cajaAuxiliar.setAbierta(false);
+        }
+
+        mostrarEstado(minuto);
+        
+        if (cola == 0) {
+            minutosSinCola++;
+        }
+    }
 }
