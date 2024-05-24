@@ -1,18 +1,33 @@
-class Mundo{
+class Mundo {
 
-    private CentroComercial centroComercial;
+    private CentroComercial carrefour;
     private int tiempoTotal;
 
-    public Mundo(int tiempoTotal){
-        centroComercial = new CentroComercial();
+    public Mundo(int tiempoTotal) {
+        carrefour = new CentroComercial();
         this.tiempoTotal = tiempoTotal;
     }
 
-    public void simular(){
+    public void simular() {
+        boolean centroAbierto = true;
+        int minutoActual = 0;
+        do {
+            minutoActual++;
+            centroAbierto = minutoActual <= this.tiempoTotal;
+            if (llegaUnCliente()){
+                Cliente cliente = new Cliente();
+                carrefour.recibe(cliente);
+            }
+        } while (centroAbierto);
 
     }
 
+    private boolean llegaUnCliente() {
+        return Math.random()<=0.4;
+    }
+
     public static void main(String[] args) {
-        new Mundo(720).simular();
+        final int TIEMPO_TOTAL = 12 * 60;
+        new Mundo(TIEMPO_TOTAL).simular();
     }
 }
