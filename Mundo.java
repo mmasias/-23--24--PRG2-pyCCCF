@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Mundo {
 
     private CentroComercial carrefour;
@@ -18,6 +20,9 @@ class Mundo {
                 Cliente cliente = new Cliente();
                 carrefour.recibe(cliente);
             }
+            carrefour.actualizar();
+            carrefour.verEstado(minutoActual);
+            new Scanner(System.in).nextLine();
         } while (centroAbierto);
 
     }
