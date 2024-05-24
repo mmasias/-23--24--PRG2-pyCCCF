@@ -56,4 +56,40 @@ public class CentroComercial {
         }
         s.close();
     }
+
+    private void operar() {
+        for (int hora = 0; hora <= ultimaHora; hora++) {
+            mostrarHora(hora);
+
+            for (int minuto = 1; minuto <= 60; minuto++) {
+                procesarMinuto(minuto);
+            }
+
+            if (hora == ultimaHora) {
+                mostrarResumen();
+            }
+        }
+    }
+
+    private void mostrarHora(int hora) {
+        System.out.println("-----------------------------------------------------------------------------");
+        switch (hora) {
+            case 0: System.out.println("Hora 09:00 - Apertura de tienda"); break;
+            case 1: System.out.println("Hora 10:00"); break;
+            case 2: System.out.println("Hora 11:00"); break;
+            case 3: System.out.println("Hora 12:00"); break;
+            case 4: System.out.println("Hora 13:00"); break;
+            case 5: System.out.println("Hora 14:00"); break;
+            case 6: System.out.println("Hora 15:00"); break;
+            case 7: System.out.println("Hora 16:00"); break;
+            case 8: System.out.println("Hora 17:00"); break;
+            case 9: System.out.println("Hora 18:00"); break;
+            case 10: System.out.println("Hora 19:00"); break;
+            case 11: System.out.println("Hora 20:00"); break;
+            case 12: System.out.println("Hora 21:00 - Ultima Hora"); break;
+        }
+        System.out.println("-----------------------------------------------------------------------------");
+    }
+
+    
 }
