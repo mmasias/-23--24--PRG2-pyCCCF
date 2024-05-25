@@ -6,10 +6,12 @@ class Mundo {
 
     private CentroComercial carrefour;
     private int tiempoTotal;
+    private Estadisticas estadisticas;
 
     public Mundo(int tiempoTotal) {
         carrefour = new CentroComercial();
         this.tiempoTotal = tiempoTotal;
+        estadisticas = new Estadisticas();
     }
 
     public void simular() {
@@ -24,10 +26,17 @@ class Mundo {
                 carrefour.recibe(cliente);
             }
             carrefour.actualizar();
+            if (carrefour.colaVacia()) {
+                estadisticas.incrementarMinutosSinCola();
+            }
             carrefour.verEstado(minutoActual);
             new Scanner(System.in).nextLine();
         } while (centroAbierto);
+        estadisticas.actualizarEstadisticas(carrefour);
 
+        System.out.println("=".repeat(70));
+        estadisticas.mostrar();
+        System.out.println("=".repeat(70));
     }
 
     private boolean llegaUnCliente() {

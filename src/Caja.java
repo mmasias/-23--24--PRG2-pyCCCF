@@ -4,10 +4,12 @@ class Caja {
 
     private Cliente clienteActual;
     private int itemsFaltantes;
+    private CentroComercial centroComercial;
 
-    public Caja() {
+    public Caja(CentroComercial centroComercial) {
         this.clienteActual = null;
         this.itemsFaltantes = 0;
+        this.centroComercial = centroComercial;
     }
 
     public boolean estaLibre() {
@@ -25,6 +27,8 @@ class Caja {
         if (clienteActual != null) {
             itemsFaltantes--;
             if (itemsFaltantes <= 0) {
+                centroComercial.incrementarPersonasAtendidas();
+                centroComercial.incrementarItemsVendidos(clienteActual.getNumeroItems());
                 cajaLibre();
             }
         }
