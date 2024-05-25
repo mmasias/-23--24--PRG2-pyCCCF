@@ -8,7 +8,7 @@ class CentroComercial {
     public CentroComercial(){
         cajas = new Caja[4];
         for (int i = 0; i < cajas.length; i++) {
-            cajas[i] = new Caja();
+            cajas[i] = new Caja(i);
         }
         cola = new Cliente[100];
         ultimo = 0;
@@ -20,7 +20,7 @@ class CentroComercial {
     }
 
     public void actualizar() {
-        if(ultimo>=0) {
+        if(ultimo>0) {
             deColaACaja();
         }
         atiendeCajas();
@@ -29,7 +29,7 @@ class CentroComercial {
     private void deColaACaja() {
         for(int i=0;i<cajas.length;i++){
             if (cajas[i].estaLibre()){
-                Cliente cliente = cola[ultimo];
+                Cliente cliente = cola[ultimo-1];
                 ultimo--;
                 cajas[i].recibe(cliente);
             }
