@@ -1,32 +1,18 @@
-public class Caja {
-    private int productos;
-    private boolean abierta;
+class Caja {
 
-    public Caja() {
-        this.productos = 0;
-        this.abierta = false;
+    public boolean estaLibre() {
+    
     }
 
-    public int getProductos() {
-        return productos;
+    public void recibe(Cliente cliente) {
+
     }
 
-    public void setProductos(int productos) {
-        this.productos = productos;
+    public void atiende() {
+
     }
 
-    public boolean isAbierta() {
-        return abierta;
-    }
+    public void verEstado() {
 
-    public void setAbierta(boolean abierta) {
-        this.abierta = abierta;
-    }
-
-    public void procesarProducto() {
-        if (productos > 0) {
-            productos--;
-        }
     }
 }
-
