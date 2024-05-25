@@ -32,6 +32,10 @@ class CentroComercial {
                 Cliente cliente = cola[ultimo-1];
                 ultimo--;
                 cajas[i].recibe(cliente);
+                
+            }
+            if (ultimo==0) {
+                break;
             }
         }
     }
