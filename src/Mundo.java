@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Scanner;
 
 class Mundo {
@@ -13,10 +15,11 @@ class Mundo {
     public void simular() {
         boolean centroAbierto = true;
         int minutoActual = 0;
+
         do {
             minutoActual++;
             centroAbierto = minutoActual <= this.tiempoTotal;
-            if (llegaUnCliente()){
+            if (llegaUnCliente()) {
                 Cliente cliente = new Cliente();
                 carrefour.recibe(cliente);
             }
@@ -28,7 +31,7 @@ class Mundo {
     }
 
     private boolean llegaUnCliente() {
-        return Math.random()<=0.4;
+        return Math.random() <= 0.4;
     }
 
     public static void main(String[] args) {
