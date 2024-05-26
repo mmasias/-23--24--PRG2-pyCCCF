@@ -6,6 +6,7 @@ class CentroComercial {
     private Cliente[] cola;
     private int ultimo;
     private Estadisticas estadisticas;
+    private boolean cajaAdicionalAbierta;
 
     public CentroComercial() {
         cajas = new Caja[4];
@@ -15,11 +16,28 @@ class CentroComercial {
         cola = new Cliente[100];
         ultimo = 0;
         estadisticas = new Estadisticas();
+        cajaAdicionalAbierta = false;
     }
 
     public void recibe(Cliente cliente) {
         cola[ultimo] = cliente;
         ultimo++;
+        if (ultimo >= 15 && !cajaAdicionalAbierta) {
+            abrirCajaNueva();
+            cajaAdicionalAbierta = true;
+        }
+    }
+
+    private void abrirCajaNueva() {
+        Caja[] nuevaCaja = new Caja[cajas.length + 1];
+        for (int i = 0; i < cajas.length; i++) {
+            nuevaCaja[i] = cajas[i];
+        }
+        nuevaCaja[cajas.length] = new Caja(this);
+        cajas = nuevaCaja;
+        System.out.println("=".repeat(70));
+        System.out.println("UNA NUEVA CAJA ABIERTA!!!");
+        System.out.println("=".repeat(70));
     }
 
     public void actualizar() {

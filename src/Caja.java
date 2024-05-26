@@ -5,11 +5,13 @@ class Caja {
     private Cliente clienteActual;
     private int itemsFaltantes;
     private CentroComercial centroComercial;
+    private int clientesAtendidos;
 
     public Caja(CentroComercial centroComercial) {
         this.clienteActual = null;
         this.itemsFaltantes = 0;
         this.centroComercial = centroComercial;
+        this.clientesAtendidos = 0;
     }
 
     public boolean estaLibre() {
@@ -29,6 +31,7 @@ class Caja {
             if (itemsFaltantes <= 0) {
                 centroComercial.incrementarPersonasAtendidas();
                 centroComercial.incrementarItemsVendidos(clienteActual.getNumeroItems());
+                clientesAtendidos++;
                 cajaLibre();
             }
         }
@@ -45,5 +48,9 @@ class Caja {
         } else {
             System.out.println("Atendiendo a un cliente con " + itemsFaltantes + " items");
         }
+    }
+
+    public int getNumeroClientesAtendidos() {
+        return clientesAtendidos;
     }
 }
