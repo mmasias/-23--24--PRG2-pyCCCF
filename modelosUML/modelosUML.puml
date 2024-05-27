@@ -1,0 +1,21 @@
+@startuml
+class Mundo {
+}
+
+class CentroComercial {
+}
+
+class Persona {
+}
+
+class Cola {
+}
+
+class Caja {
+}
+
+Mundo -- CentroComercial
+CentroComercial -- Persona
+Persona -- Cola : puede ir a:
+Persona -- Caja : puede ir a:
+@enduml
