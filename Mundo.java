@@ -25,6 +25,8 @@ class Mundo {
             new Scanner(System.in).nextLine();
         } while (centroAbierto);
 
+        carrefour.mostrarEstadisticasJornada();
+
     }
 
     private boolean llegaUnCliente() {
