@@ -5,6 +5,7 @@ class CentroComercial {
     private Caja[] cajas;
     private Cliente[] cola;
     private int ultimo;
+    private int clientesAtendidosTotal;
 
     public CentroComercial(){
         cajas = new Caja[4];
@@ -44,10 +45,14 @@ class CentroComercial {
     }
 
     public void verEstado(int minutoActual) {
+        clientesAtendidosTotal = 0;
         System.out.println("Minuto actual: "+ minutoActual);
         System.out.println(ultimo + " personas en cola");
         for (int i = 0; i < cajas.length; i++) {
             cajas[i].verEstado();
+            clientesAtendidosTotal += cajas[i].getClientesAtendidos(); 
         }
+        System.out.println("En total se han atendido a " + clientesAtendidosTotal + " clientes");
+
     }
 }

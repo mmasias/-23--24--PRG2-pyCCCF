@@ -26,6 +26,8 @@ class Mundo {
             new Scanner(System.in).nextLine();
         } while (centroAbierto);
 
+
+
     }
 
     private boolean llegaUnCliente() {

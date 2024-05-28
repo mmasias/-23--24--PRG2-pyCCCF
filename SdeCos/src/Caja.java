@@ -3,7 +3,6 @@ package SdeCos.src;
 class Caja {
     private Cliente cliente;
     private int clientesAtendidos;
-
     public Caja(){
         clientesAtendidos = 0;
     }
@@ -32,5 +31,9 @@ class Caja {
         } else {
             System.out.println("Libre!");
         }
+    }
+
+    public int getClientesAtendidos() {
+        return clientesAtendidos;
     }
 }
