@@ -1,52 +1,60 @@
-
-class CentroComercial {
-
+public class CentroComercial {
     private Caja[] cajas;
     private Cliente[] cola;
     private int ultimo;
 
-    public CentroComercial(){
+    public CentroComercial() {
         cajas = new Caja[4];
         for (int i = 0; i < cajas.length; i++) {
             cajas[i] = new Caja();
         }
         cola = new Cliente[100];
-        ultimo = 0;
+        ultimo = -1;
     }
 
-    public void recibe(Cliente cliente) {
-        cola[ultimo] = cliente;
-        ultimo++;
+    public void recibirCliente(Cliente cliente) {
+        if (ultimo < cola.length - 1) {
+            cola[++ultimo] = cliente;
+        }
     }
 
     public void actualizar() {
-        if(ultimo>=0) {
-            deColaACaja();
-        }
+        deColaACaja();
         atiendeCajas();
     }
 
     private void deColaACaja() {
-        for(int i=0;i<cajas.length;i++){
-            if (cajas[i].estaLibre()){
-                Cliente cliente = cola[ultimo];
-                ultimo--;
-                cajas[i].recibe(cliente);
+        int index = 0;
+        while (index <= ultimo) {
+            boolean clienteAsignado = false;
+            for (int i = 0; i < cajas.length && index <= ultimo; i++) {
+                if (cajas[i].estaLibre()) {
+                    cajas[i].asignarCliente(cola[index]);
+                    index++;
+                    clienteAsignado = true;
+                    break;
+                }
             }
+            if (!clienteAsignado) break;
         }
+      
+        if (index <= ultimo) {
+            System.arraycopy(cola, index, cola, 0, ultimo - index + 1);
+        }
+        ultimo -= index;
     }
 
     private void atiendeCajas() {
-        for (int i = 0; i < cajas.length; i++) {
-            cajas[i].atiende();
+        for (Caja caja : cajas) {
+            caja.procesarAtencion();
         }
     }
 
-    public void verEstado(int minutoActual) {
-        System.out.println("Minuto actual: "+minutoActual);
-        System.out.println(ultimo + " personas en cola");
-        for (int i = 0; i < cajas.length; i++) {
-            cajas[i].verEstado();
+    public void mostrarEstado(int minutoActual) {
+        System.out.println("Minuto actual: " + minutoActual);
+        System.out.println((ultimo + 1) + " personas en cola");
+        for (Caja caja : cajas) {
+            caja.mostrarEstado();
         }
     }
 }
