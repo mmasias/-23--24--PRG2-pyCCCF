@@ -27,7 +27,7 @@ class Mundo {
                 estadisticas.incrementarMinutosSinCola();
             }
             carrefour.verEstado(minutoActual);
-            //new Scanner(System.in).nextLine();
+            new Scanner(System.in).nextLine();
         } while (centroAbierto);
         estadisticas.actualizar(carrefour);
         estadisticas.mostrar();
