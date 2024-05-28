@@ -3,14 +3,10 @@ class Caja {
 
     private int cantidadItems;
     private int numeroCaja;
-    private int personasAtendidas;
-    private int articulosVendidos;
 
     public Caja(int numeroCaja){
         cantidadItems = 0;
         this.numeroCaja = numeroCaja +1;
-        personasAtendidas = 0;
-        articulosVendidos = 0;
 
     }
 
@@ -30,10 +26,6 @@ class Caja {
 
         if (cantidadItems>0) {
             cantidadItems--; 
-            articulosVendidos++;
-            if (cantidadItems==0) {
-                personasAtendidas++; 
-            }
         }
 
     }
@@ -44,13 +36,9 @@ class Caja {
 
     }
 
-    public int obtenerPersonasAtendidas(){
+    public int obtenerArticulos(){
 
-        return personasAtendidas;
+        return cantidadItems;
     }
 
-    public int obtenerArticulosVendidos(){
-
-        return articulosVendidos;
-    }
 }
