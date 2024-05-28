@@ -1,7 +1,6 @@
 class Caja {
     private Cliente clienteActual;
     private int itemsRestantes;
-    
     public boolean estaLibre() {
         return clienteActual == null;
     }

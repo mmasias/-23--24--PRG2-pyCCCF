@@ -6,6 +6,8 @@ class Cliente {
     }
     
     public int getNumeroDeItems() {
-        return numeroDeItems;
+        int oldItems = numeroDeItems;
+        numeroDeItems = 0;
+        return oldItems;
     }
 }
