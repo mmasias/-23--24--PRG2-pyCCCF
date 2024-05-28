@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Mundo {
+public class Mundo {
 
     private CentroComercial carrefour;
     private int tiempoTotal;
@@ -11,24 +11,23 @@ class Mundo {
     }
 
     public void simular() {
-        boolean centroAbierto = true;
         int minutoActual = 0;
-        do {
+        while (minutoActual < this.tiempoTotal) {
             minutoActual++;
-            centroAbierto = minutoActual <= this.tiempoTotal;
-            if (llegaUnCliente()){
+            if (llegaUnCliente()) {
                 Cliente cliente = new Cliente();
-                carrefour.recibe(cliente);
+                carrefour.recibirCliente(cliente);
             }
             carrefour.actualizar();
-            carrefour.verEstado(minutoActual);
-            new Scanner(System.in).nextLine();
-        } while (centroAbierto);
+            carrefour.mostrarEstado(minutoActual);
 
+            // Descomentar para pausar cada minuto durante la ejecución
+            // new Scanner(System.in).nextLine();
+        }
     }
 
     private boolean llegaUnCliente() {
-        return Math.random()<=0.4;
+        return Math.random() <= 0.4;
     }
 
     public static void main(String[] args) {
