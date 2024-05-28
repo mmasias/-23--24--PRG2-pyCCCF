@@ -10,8 +10,9 @@ class Cliente {
     }
 
     public int entregaItems() {
-
-        return cantidadItems;
+        int antiguosItems = cantidadItems;
+        cantidadItems = 0;
+        return antiguosItems;
         
     }
 
