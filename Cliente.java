@@ -11,7 +11,7 @@ class Cliente {
 
     public int entregaItems() {
         int antiguosItems = cantidadItems;
-        cantidadItems = 0;
+        this.cantidadItems = 0;
         return antiguosItems;
         
     }
