@@ -1,3 +1,4 @@
+package SdeCos.src;
 
 class Cliente {
     private int numeroItems;

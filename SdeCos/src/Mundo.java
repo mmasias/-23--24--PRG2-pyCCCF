@@ -1,3 +1,4 @@
+package SdeCos.src;
 import java.util.Scanner;
 class Mundo {
 

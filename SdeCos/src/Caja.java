@@ -1,3 +1,4 @@
+package SdeCos.src;
 
 class Caja {
     private Cliente cliente;
