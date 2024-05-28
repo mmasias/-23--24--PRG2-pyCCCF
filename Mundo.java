@@ -21,7 +21,7 @@ public class Mundo {
             carrefour.actualizar();
             carrefour.mostrarEstado(minutoActual);
 
-            // Descomentar para pausas cada minuto
+            // Descomentar para pausar cada minuto durante la ejecución
             // new Scanner(System.in).nextLine();
         }
     }
