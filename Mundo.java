@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 class Mundo {
 
     private CentroComercial carrefour;
@@ -17,7 +16,8 @@ class Mundo {
             minutoActual++;
             centroAbierto = minutoActual <= this.tiempoTotal;
             if (llegaUnCliente()){
-                Cliente cliente = new Cliente();
+                int numeroItems = (int) (Math.random() * (15 - 1 + 1) + 1);
+                Cliente cliente = new Cliente(numeroItems);
                 carrefour.recibe(cliente);
             }
             carrefour.actualizar();

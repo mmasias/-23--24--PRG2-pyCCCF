@@ -20,17 +20,15 @@ class CentroComercial {
     }
 
     public void actualizar() {
-        if(ultimo>=0) {
-            deColaACaja();
-        }
+        deColaACaja();
         atiendeCajas();
     }
 
     private void deColaACaja() {
         for(int i=0;i<cajas.length;i++){
-            if (cajas[i].estaLibre()){
-                Cliente cliente = cola[ultimo];
+            if (cajas[i].estaLibre() && ultimo >=1){
                 ultimo--;
+                Cliente cliente = cola[ultimo];
                 cajas[i].recibe(cliente);
             }
         }
@@ -38,12 +36,14 @@ class CentroComercial {
 
     private void atiendeCajas() {
         for (int i = 0; i < cajas.length; i++) {
+            if(!cajas[i].estaLibre()){
             cajas[i].atiende();
+            }
         }
     }
 
     public void verEstado(int minutoActual) {
-        System.out.println("Minuto actual: "+minutoActual);
+        System.out.println("Minuto actual: "+ minutoActual);
         System.out.println(ultimo + " personas en cola");
         for (int i = 0; i < cajas.length; i++) {
             cajas[i].verEstado();
