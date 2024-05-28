@@ -14,7 +14,9 @@ class Cliente {
 
     public int numeroItems() {
 
-        return numeroItems;
+        int items=0;
+        int oldItems= items;
+        return oldItems;
 
     }
 }
