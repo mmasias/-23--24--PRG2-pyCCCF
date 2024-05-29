@@ -28,9 +28,9 @@ class CentroComercial {
 
     private void deColaACaja() {
         for(int i=0;i<cajas.length;i++){
-            if (cajas[i].estaLibre()){
-                Cliente cliente = cola[ultimo];
+            if (cajas[i].estaLibre() && ultimo > 0){
                 ultimo--;
+                Cliente cliente = cola[ultimo];
                 cajas[i].recibe(cliente);
             }
         }
