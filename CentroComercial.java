@@ -1,72 +1,76 @@
-clase  CentroComercial {
-     caja privada [] cajas ;
-     Cliente privado [] cola ;
-    privado  int  último ;
-    privado  int  minutosSinCola ;
-     CentroComercial público (){
-        cajas = nueva  Caja [ 4 ];
-        for ( int  i = 0 ; i < cajas . longitud ; i ++) {
-            cajas [ i ] = nueva  Caja ( i );
+class CentroComercial {
+    private Caja[] cajas;
+    private Cliente[] cola;
+    private int ultimo;
+    private int minutosSinCola;
+
+    public CentroComercial(){
+        cajas = new Caja[4];
+        for (int i = 0; i < cajas.length; i++) {
+            cajas[i] = new Caja(i);
         }
-        cola = nuevo  Cliente [ 100 ];
-        ultimo = 0 ;
-        minutosSinCola = 0 ;
-    }
-    public  void  recibe ( Cliente  cliente ) {
-        cola [ último ] = cliente ;
-        último ++;
-    }
-    public  void  actualizar () {
-        si ( último > 0 ) {
-            deColaACaja ();
-        }
-        atiendeCajas ();
+        cola = new Cliente[100];
+        ultimo = 0;
+        minutosSinCola = 0;
     }
 
-    vacío privado deColaACaja() {
-        for ( int  i = 0 ; i < cajas . longitud ; i ++){
-        for(int i=0;i<cajas.length;i++ && ultimo>0 ){
-            if ( cajas [ i ]. estaLibre ()){
-                Cliente  cliente = cola [ ultimo - 1 ];
-                del mes pasado--;
-                cajas [ i ]. recibe ( cliente );
+    public void recibe(Cliente cliente) {
+        cola[ultimo] = cliente;
+        ultimo++;
+    }
+    public void actualizar() {
+        if(ultimo>0) {
+            deColaACaja();
+        }
+        atiendeCajas();
+    }
+    private void deColaACaja() {
+        for(int i=0;i<cajas.length;i++){
+            if (cajas[i].estaLibre()){
+                Cliente cliente = cola[ultimo-1];
+                ultimo--;
+                cajas[i].recibe(cliente);
 
             }
-            si (ultimo==0) {
-                minutosSinCola ++;
-                romper;
+            if (ultimo==0) {
+                minutosSinCola++;
+                break;
             }
         }
     }
+    private void atiendeCajas() {
+        for (int i = 0; i < cajas.length; i++) {
+            cajas[i].atiende();
+        }
+    }
+    public void verEstado(int minutoActual) {
+        System.out.println("Minuto actual: "+minutoActual);
+        System.out.println(ultimo + " personas en cola");
+        for (int i = 0; i < cajas.length; i++) {
+            cajas[i].verEstado();
+        }
+    }
 
-     void  privado atiendeCajas () {
-        for ( int  i = 0 ; i < cajas . longitud ; i ++) {
-            cajas [ i ]. atiende ();
+    public void mostrarEstadisticasJornada() {
+
+        int personasAtendidasTotal = 0;
+        for (int i = 0; i < cajas.length; i++) {
+            personasAtendidasTotal = personasAtendidasTotal + cajas[i].obtenerPersonasAtendidas();
         }
+
+        int articulosTotalesVendidos = 0;
+        for (int i = 0; i < cajas.length; i++) {
+            articulosTotalesVendidos = articulosTotalesVendidos + cajas[i].obtenerArticulosVendidos();
+        }
+
+        System.out.println("RESUMEN");
+        System.out.println("=".repeat(60));
+        System.out.println("Minutos con cola en cero: " + minutosSinCola);
+        System.out.println("Personas en la cola al cierre: " + ultimo);
+        System.out.println("Personas atendidas en el dia: " + personasAtendidasTotal);
+        System.out.println("Articulos vendidos en el dia: " + articulosTotalesVendidos);
+        System.out.println("=".repeat(60));
+
     }
-    public  void  verEstado ( int  minutoActual ) {
-        Sistema . afuera . println ( "Minuto actual: " + minutoActual );
-        Sistema . afuera . println ( ultimo + "personas en cola" );
-        for ( int  i = 0 ; i < cajas . longitud ; i ++) {
-            cajas [ i ]. verEstado ();
-        }
-    }
-    public  void  mostrarEstadisticasJornada () {
-        int  personasAtendidasTotal = 0 ;
-        for ( int  i = 0 ; i < cajas . longitud ; i ++) {
-            personasAtendidasTotal = personasAtendidasTotal + cajas [ i ]. obtenerPersonasAtendidas ();
-        }
-        int  articulosTotalesVendidos = 0 ;
-        for ( int  i = 0 ; i < cajas . longitud ; i ++) {
-            articulosTotalesVendidos = articulosTotalesVendidos + cajas [ i ]. obtenerArticulosVendidos ();
-        }
-        Sistema . afuera . println ( "RESUMEN" );
-        Sistema . afuera . println ( "=" . repetir ( 60 ));
-        Sistema . afuera . println ( "Minutos con cola en cero: " + minutosSinCola );
-        Sistema . afuera . println ( "Personas en la cola al cierre: " + ultimo );
-        Sistema . afuera . println ( "Personas atendidas en el dia: " + personasAtendidasTotal );
-        Sistema . afuera . println ( "Articulos vendidos en el dia: " + articulosTotalesVendidos );
-        Sistema . afuera . println ( "=" . repetir ( 60 ));
-        
-    }
+}
 }
