@@ -37,8 +37,10 @@ class Caja {
     }
 
     public int obtenerPersonasAtendidas(){
+    public int obtenerArticulos(){
 
         return personasAtendidas;
+        return cantidadItems;
     }
 
     public int obtenerArticulosVendidos(){
