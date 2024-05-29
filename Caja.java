@@ -24,9 +24,7 @@ class Caja {
 
     public void atiende() {
 
-        if (cantidadItems>0) {
             cantidadItems--; 
-        }
 
     }
 
@@ -39,6 +37,10 @@ class Caja {
     public int obtenerArticulos(){
 
         return cantidadItems;
+    }
+
+    public boolean tieneItems(){
+        return cantidadItems>0;
     }
 
 }

@@ -41,8 +41,10 @@ class CentroComercial {
 
     private void atiendeCajas() {
         for (int i = 0; i < cajas.length; i++) {
-            cajas[i].atiende();
-            incrementarArticulosVendidos();
+            if(cajas[i].tieneItems()){
+                cajas[i].atiende(); 
+                incrementarArticulosVendidos(); 
+            }
             if (cajas[i].obtenerArticulos() == 0) {
                 incrementarPersonasAtendidas();
             }
