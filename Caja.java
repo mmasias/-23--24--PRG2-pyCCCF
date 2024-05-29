@@ -1,19 +1,36 @@
 
 class Caja {
+    private boolean enServicio;
+    private Cliente clienteActual;
 
-    public boolean estaLibre() {
-    
+    public Caja() {
+        this.enServicio = false;
     }
 
-    public void recibe(Cliente cliente) {
-
+    public boolean estaDisponible() {
+        return !enServicio;
     }
 
-    public void atiende() {
-
+    public void asignarCliente(Cliente cliente) {
+        this.clienteActual = cliente;
+        this.enServicio = true;
     }
 
-    public void verEstado() {
+    public void procesarCliente() {
+        if (clienteActual != null) {
+            clienteActual.procesarProducto();
+            if (clienteActual.sinProductos()) {
+                this.clienteActual = null;
+                this.enServicio = false;
+            }
+        }
+    }
 
+    public void mostrarEstado() {
+        System.out.print("Caja " + (enServicio ? "en servicio" : "disponible"));
+        if (clienteActual != null) {
+            clienteActual.mostrarEstado();
+        }
+        System.out.println();
     }
 }
