@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        Mundo mundo = new Mundo(4, 1); // 4 cajas, 1 minuto de atención por pack
+        Mundo mundo = new Mundo(4, 1);
         for (int tiempo = 9; tiempo < 21; tiempo++) {
             System.out.println("Tiempo: " + tiempo + ":00");
             mundo.llegadaCliente();
